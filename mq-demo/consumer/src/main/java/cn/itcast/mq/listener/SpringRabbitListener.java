@@ -13,16 +13,18 @@ import java.util.Map;
 @Component
 public class SpringRabbitListener {
 
+    //测试简单案例
      @RabbitListener(queues = "simple.queue")
      public void listenSimpleQueue(String msg) {
          System.out.println("消费者接收到simple.queue的消息：【" + msg + "】");
      }
 
-//    @RabbitListener(queues = "simple.queue")
-//    public void listenWorkQueue1(String msg) throws InterruptedException {
-//        System.out.println("消费者1接收到消息：【" + msg + "】" + LocalTime.now());
-//        Thread.sleep(20);
-//    }
+     //测试preFetch参数预取值
+    @RabbitListener(queues = "simple.queue")
+    public void listenWorkQueue1(String msg) throws InterruptedException {
+        System.out.println("消费者1接收到消息：【" + msg + "】" + LocalTime.now());
+        Thread.sleep(20);
+    }
 //
 //    @RabbitListener(queues = "simple.queue")
 //    public void listenWorkQueue2(String msg) throws InterruptedException {
@@ -34,10 +36,10 @@ public class SpringRabbitListener {
 //    public void listenFanoutQueue1(String msg) {
 //        System.out.println("消费者接收到fanout.queue1的消息：【" + msg + "】");
 //    }
-//    @RabbitListener(queues = "fanout.queue2")
-//    public void listenFanoutQueue2(String msg) {
-//        System.out.println("消费者接收到fanout.queue2的消息：【" + msg + "】");
-//    }
+    @RabbitListener(queues = "fanout.queue2")
+    public void listenFanoutQueue2(String msg) {
+        System.out.println("消费者接收到fanout.queue2的消息：【" + msg + "】");
+    }
 //
 //    @RabbitListener(bindings = @QueueBinding(
 //            value = @Queue(name = "direct.queue1"),

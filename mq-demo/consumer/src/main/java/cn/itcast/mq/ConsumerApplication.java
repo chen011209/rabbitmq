@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ConsumerApplication {
+
+    //启动报错可能是rabbitmq中没有queue信息 需要生产者先发送消息
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class, args);
     }

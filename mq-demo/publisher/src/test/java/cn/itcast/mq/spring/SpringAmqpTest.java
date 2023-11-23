@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.HashMap;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SpringAmqpTest {
@@ -63,5 +65,19 @@ public class SpringAmqpTest {
         String message = "今天天气不错，我的心情好极了!";
         // 发送消息
         rabbitTemplate.convertAndSend(exchangeName, "china.weather", message);
+    }
+
+
+    @Test
+    public void testSendObject(){
+        // 交换机名称
+        String exchangeName = "object.queue";
+        // 消息
+        HashMap<String,Object> message = new HashMap<>();
+        message.put("name","nidie");
+        message.put("age",21);
+        // 发送消息
+        rabbitTemplate.convertAndSend(exchangeName, message);
+
     }
 }

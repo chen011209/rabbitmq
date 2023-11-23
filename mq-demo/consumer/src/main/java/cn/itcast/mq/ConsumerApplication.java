@@ -10,11 +10,15 @@ import org.springframework.context.annotation.Bean;
 public class ConsumerApplication {
 
     //启动报错可能是rabbitmq中没有queue信息 需要生产者先发送消息
+    //也可也直接注册bean回调创建队列
     public static void main(String[] args) {
         SpringApplication.run(ConsumerApplication.class, args);
     }
-//    @Bean
-//    public MessageConverter messageConverter(){
-//        return new Jackson2JsonMessageConverter();
-//    }
+
+
+    //jdk本身的序列化方法性能较差而且有安全风险
+    @Bean
+    public MessageConverter messageConverter(){
+        return new Jackson2JsonMessageConverter();
+    }
 }

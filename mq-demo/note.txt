@@ -1,6 +1,10 @@
-rabbitmq的listener像注册在nacos的微服务一样连接到rabit，
+rabbitmq的listener像注册在nacos的微服务一样连接到rabbit，
 而发送的只需要指定交换机 routeKey或者queue就可以
-交换机如何需要转发listener来定义
+交换机如何转发listener来定义
+
+有时直接启动消费者会报错 获取不到queue
+需要生产者发送消息后提供queue信息再启动消费者才可以
+也可也直接注册bean回调创建队列
 
 有fanout广播
 direct指定
@@ -17,5 +21,10 @@ docker run \
  -d \
  rabbitmq:3-management
 
-有时直接启动消费者会报错 获取不到queue
-需要生产者发送消息后提供queue信息再启动消费者才可以
+
+
+注册自定义的序列化工具来替代jdk原本的序列化工具
+   @Bean
+    public MessageConverter messageConverter(){
+        return new Jackson2JsonMessageConverter();
+    }

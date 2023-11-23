@@ -12,6 +12,7 @@ public class PublisherApplication {
         SpringApplication.run(PublisherApplication.class);
     }
 
+    //使用自定义的序列化工具
     @Bean
     public MessageConverter messageConverter(){
         return new Jackson2JsonMessageConverter();

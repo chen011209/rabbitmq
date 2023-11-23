@@ -4,6 +4,7 @@ rabbitmq的listener像注册在nacos的微服务一样连接到rabit，
 
 有fanout广播
 direct指定
+topic主题 其实就是将direct的key做一个通配符匹配
 
 运行rabbit
 docker run \
